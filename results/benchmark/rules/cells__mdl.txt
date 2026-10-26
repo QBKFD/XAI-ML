@@ -1,0 +1,8 @@
+# MDL on cells, seed 42
+# rule list (first matching rule applies); 4 rules
+
+IF UnifShape >= 3 AND BareNuc >= 3 THEN malignant
+ELSE IF UnifSize >= 7 THEN malignant
+ELSE IF MargAdh >= 6 AND BlandChrom >= 3 AND BareNuc >= 1 THEN malignant
+ELSE IF Clump >= 8 THEN malignant
+ELSE PREDICT benign

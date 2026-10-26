@@ -1,0 +1,5 @@
+# CORELS on compas, seed 42
+# rule list (first matching rule applies); 1 rule
+
+IF NOT Age=18-22=1 AND NOT Prior-Crimes>3=1 THEN 0
+ELSE PREDICT 1

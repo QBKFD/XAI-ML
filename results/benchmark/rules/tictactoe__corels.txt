@@ -1,0 +1,5 @@
+# CORELS on tictactoe, seed 42
+# rule list (first matching rule applies); 1 rule
+
+IF middle_middle=o AND NOT top_right=x THEN negative
+ELSE PREDICT positive

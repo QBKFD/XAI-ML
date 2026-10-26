@@ -1,0 +1,27 @@
+# IDS on sonar, seed 42
+# rule set (unordered); 23 rules
+
+IF ab > 0.8487 AND at > 0.179 THEN M
+IF ab > 0.8487 AND au > 0.1316 THEN M
+IF ay > 0.0171 AND ak <= 0.2062 THEN M
+IF k <= 0.1582 AND 0.0895 < g <= 0.1398 THEN R
+IF s <= 0.3326 AND av <= 0.0532 THEN R
+IF ab > 0.8487 AND k > 0.2716 THEN M
+IF 0.4128 < t <= 0.7542 AND at > 0.179 THEN M
+IF ay > 0.0171 AND l > 0.3035 THEN M
+IF t <= 0.4128 AND av <= 0.0532 THEN R
+IF aw > 0.0589 AND bb <= 0.0071 THEN M
+IF i > 0.1896 AND z > 0.8494 THEN M
+IF ab > 0.8487 AND i > 0.1896 THEN M
+IF ai <= 0.236 AND az > 0.014 THEN M
+IF 0.1155 < as <= 0.2 AND af > 0.5069 THEN R
+IF o > 0.3811 AND 0.1601 < l <= 0.3035 THEN M
+IF ay > 0.0171 AND ab > 0.8487 THEN M
+IF am > 0.3607 AND v > 0.7813 THEN M
+IF aa > 0.8745 AND aq > 0.2785 THEN M
+IF h > 0.1473 AND aa > 0.8745 THEN M
+IF ai <= 0.236 AND as > 0.2 THEN M
+IF k > 0.2716 AND ac > 0.8028 THEN M
+IF r > 0.5964 AND 0.1601 < l <= 0.3035 THEN M
+IF ao > 0.3363 AND ak <= 0.2062 THEN M
+OTHERWISE PREDICT R

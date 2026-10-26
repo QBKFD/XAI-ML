@@ -1,0 +1,13 @@
+# MDL on tictactoe, seed 42
+# rule list (first matching rule applies); 9 rules
+
+IF NOT middle_middle=x AND NOT bottom_left=x AND NOT top_right=x THEN negative
+ELSE IF NOT middle_middle=x AND NOT bottom_right=x AND NOT top_left=x THEN negative
+ELSE IF NOT top_right=o AND NOT middle_middle=o AND NOT bottom_left=o THEN positive
+ELSE IF NOT middle_left=x AND NOT bottom_right=x AND NOT top_middle=x THEN negative
+ELSE IF NOT top_left=x AND NOT middle_right=x AND NOT bottom_middle=x THEN negative
+ELSE IF NOT middle_middle=o AND NOT bottom_right=o AND NOT top_left=o THEN positive
+ELSE IF middle_left=o AND middle_right=o THEN negative
+ELSE IF top_middle=o AND bottom_middle=o THEN negative
+ELSE IF NOT middle_middle=o AND NOT bottom_middle=x AND NOT middle_left=x AND NOT top_right=x THEN negative
+ELSE PREDICT positive

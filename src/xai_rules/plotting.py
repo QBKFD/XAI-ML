@@ -49,6 +49,7 @@ def _style() -> None:
             "axes.facecolor": SURFACE,
             "savefig.facecolor": SURFACE,
             "font.size": 10,
+            "font.family": "DejaVu Sans",
             "axes.edgecolor": INK_3,
             "axes.labelcolor": INK_2,
             "axes.titlecolor": INK,

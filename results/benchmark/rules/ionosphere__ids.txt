@@ -1,0 +1,25 @@
+# IDS on ionosphere, seed 42
+# rule set (unordered); 21 rules
+
+IF a03 == 0.73947_to_0.998505 AND a33 == 0.000125_to_0.994855 THEN g
+IF a03 == 0.73947_to_0.998505 AND a13 == 0.35474_to_0.998725 THEN g
+IF a03 == 0.73947_to_0.998505 AND a21 == 0.07206_to_0.99888 THEN g
+IF a05 == -inf_to_0.04144 AND a17 == All THEN b
+IF a05 == -inf_to_0.04144 AND a02 == All THEN b
+IF a02 == All AND a03 == -inf_to_0.19028 THEN b
+IF a19 == All AND a03 == -inf_to_0.19028 THEN b
+IF a17 == All AND a03 == -inf_to_0.19028 THEN b
+IF a03 == -inf_to_0.19028 THEN b
+IF a05 == 0.418075_to_0.97434 AND a11 == -inf_to_0.478305 THEN g
+IF a15 == 0.239955_to_0.99914 AND a06 == -0.217515_to_-0.000715 THEN g
+IF a05 == 0.418075_to_0.97434 AND a10 == 0.591395_to_0.9891 THEN g
+IF a05 == 0.418075_to_0.97434 AND a16 == -0.90517_to_-0.00197 THEN g
+IF a05 == -inf_to_0.04144 AND a11 == -inf_to_0.478305 THEN b
+IF a02 == All AND a33 == -4e-05_to_0.000125 THEN b
+IF a17 == All AND a33 == -4e-05_to_0.000125 THEN b
+IF a01 == 0.5_to_inf AND a03 == -inf_to_0.19028 THEN b
+IF a03 == -inf_to_0.19028 AND a25 == -inf_to_0.3303 THEN b
+IF a05 == -inf_to_0.04144 AND a07 == -inf_to_0.037175 THEN b
+IF a05 == -inf_to_0.04144 AND a22 == -0.96798_to_0.923655 THEN b
+IF a03 == -inf_to_0.19028 AND a31 == -inf_to_0.132415 THEN b
+OTHERWISE PREDICT g

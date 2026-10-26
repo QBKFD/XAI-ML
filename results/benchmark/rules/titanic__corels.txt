@@ -1,0 +1,5 @@
+# CORELS on titanic, seed 42
+# rule list (first matching rule applies); 1 rule
+
+IF NOT Passenger_Cat=3rd_class AND NOT Gender=male THEN survived
+ELSE PREDICT died

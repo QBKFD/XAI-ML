@@ -1,0 +1,24 @@
+# IDS on doctor, seed 42
+# rule set (unordered); 20 rules
+
+IF Prescription Sleep Medication == 1 AND Employment == 1 THEN 2
+IF 2 < Phyiscal Health <= 3 AND Trouble Sleeping == -1 THEN 2
+IF Trouble Sleeping == -1 AND Prescription Sleep Medication == 3 THEN 2
+IF Mental Health > 2 AND Prescription Sleep Medication == -1 THEN 2
+IF Prescription Sleep Medication == -1 AND Pain Keeps Patient from Sleeping == 1 THEN 1
+IF Prescription Sleep Medication == -1 AND Pain Keeps Patient from Sleeping == 0 THEN 2
+IF Prescription Sleep Medication == -1 AND Mental Health <= 2 THEN 1
+IF Prescription Sleep Medication == -1 AND Race == 2 THEN 2
+IF Medication Keeps Patient from Sleeping == 1 AND Race == 3 THEN 2
+IF Prescription Sleep Medication == -1 AND Stress Keeps Patient from Sleeping == 0 THEN 2
+IF Prescription Sleep Medication == 1 AND Race == 3 THEN 2
+IF Prescription Sleep Medication == 2 AND Medication Keeps Patient from Sleeping == 1 THEN 2
+IF 2 < Dental Health <= 3 AND Trouble Sleeping == -1 THEN 2
+IF Prescription Sleep Medication == -1 AND Dental Health > 3 THEN 2
+IF Prescription Sleep Medication == -1 AND Trouble Sleeping == 3 THEN 2
+IF Medication Keeps Patient from Sleeping == 0 AND Trouble Sleeping == -1 THEN 2
+IF Prescription Sleep Medication == -1 AND Trouble Sleeping == 2 THEN 1
+IF Employment == 2 AND Race == 5 THEN 2
+IF Prescription Sleep Medication == -1 AND Phyiscal Health <= 2 THEN 2
+IF Uknown Keeps Patient from Sleeping == 1 AND Trouble Sleeping == -1 THEN 2
+OTHERWISE PREDICT 2

@@ -1,0 +1,34 @@
+{
+  "cells": {
+    "max_depth": 2,
+    "max_rmp_calls": 6,
+    "min_samples_leaf": 4,
+    "min_samples_split": 2,
+    "rule_cost": "gini",
+    "threshold": 0.0001
+  },
+  "glass": {
+    "max_depth": 10,
+    "max_rmp_calls": 3,
+    "min_samples_leaf": 1,
+    "min_samples_split": 2,
+    "rule_cost": "length",
+    "threshold": 0.0001
+  },
+  "titanic": {
+    "max_depth": 2,
+    "max_rmp_calls": 3,
+    "min_samples_leaf": 1,
+    "min_samples_split": 2,
+    "rule_cost": "length",
+    "threshold": 0.0001
+  },
+  "cars": {
+    "max_depth": 10,
+    "max_rmp_calls": 6,
+    "min_samples_leaf": 1,
+    "min_samples_split": 10,
+    "rule_cost": "gini",
+    "threshold": 0.0001
+  }
+}

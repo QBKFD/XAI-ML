@@ -1,0 +1,66 @@
+# CART on tictactoe, seed 42
+# rule set (unordered); 63 rules
+
+IF NOT middle_middle=o AND NOT bottom_left=o AND NOT top_right=o THEN positive
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND NOT bottom_right=o AND NOT top_left=o THEN positive
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND NOT bottom_right=o AND top_left=o AND NOT top_middle=o AND NOT bottom_middle=o THEN positive
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND NOT bottom_right=o AND top_left=o AND NOT top_middle=o AND bottom_middle=o AND NOT middle_right=o THEN positive
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND NOT bottom_right=o AND top_left=o AND NOT top_middle=o AND bottom_middle=o AND middle_right=o THEN negative
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND NOT bottom_right=o AND top_left=o AND top_middle=o THEN negative
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND bottom_right=o AND NOT middle_right=o AND NOT middle_left=x AND NOT bottom_left=x THEN positive
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND bottom_right=o AND NOT middle_right=o AND NOT middle_left=x AND bottom_left=x AND NOT top_left=x AND NOT middle_left=b THEN positive
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND bottom_right=o AND NOT middle_right=o AND NOT middle_left=x AND bottom_left=x AND NOT top_left=x AND middle_left=b THEN negative
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND bottom_right=o AND NOT middle_right=o AND NOT middle_left=x AND bottom_left=x AND top_left=x THEN negative
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND bottom_right=o AND NOT middle_right=o AND middle_left=x AND NOT middle_middle=b THEN positive
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND bottom_right=o AND NOT middle_right=o AND middle_left=x AND middle_middle=b AND NOT bottom_middle=x THEN positive
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND bottom_right=o AND NOT middle_right=o AND middle_left=x AND middle_middle=b AND bottom_middle=x THEN negative
+IF NOT middle_middle=o AND NOT bottom_left=o AND top_right=o AND bottom_right=o AND middle_right=o THEN negative
+IF NOT middle_middle=o AND bottom_left=o AND NOT top_left=o AND NOT bottom_right=o THEN positive
+IF NOT middle_middle=o AND bottom_left=o AND NOT top_left=o AND bottom_right=o AND NOT bottom_middle=o AND NOT top_left=x THEN positive
+IF NOT middle_middle=o AND bottom_left=o AND NOT top_left=o AND bottom_right=o AND NOT bottom_middle=o AND top_left=x AND NOT top_right=o AND NOT top_middle=x THEN negative
+IF NOT middle_middle=o AND bottom_left=o AND NOT top_left=o AND bottom_right=o AND NOT bottom_middle=o AND top_left=x AND NOT top_right=o AND top_middle=x THEN positive
+IF NOT middle_middle=o AND bottom_left=o AND NOT top_left=o AND bottom_right=o AND NOT bottom_middle=o AND top_left=x AND top_right=o AND NOT middle_right=o THEN positive
+IF NOT middle_middle=o AND bottom_left=o AND NOT top_left=o AND bottom_right=o AND NOT bottom_middle=o AND top_left=x AND top_right=o AND middle_right=o THEN negative
+IF NOT middle_middle=o AND bottom_left=o AND NOT top_left=o AND bottom_right=o AND bottom_middle=o THEN negative
+IF NOT middle_middle=o AND bottom_left=o AND top_left=o AND NOT middle_left=o AND NOT bottom_middle=o AND NOT middle_middle=b THEN positive
+IF NOT middle_middle=o AND bottom_left=o AND top_left=o AND NOT middle_left=o AND NOT bottom_middle=o AND middle_middle=b AND NOT top_right=o THEN positive
+IF NOT middle_middle=o AND bottom_left=o AND top_left=o AND NOT middle_left=o AND NOT bottom_middle=o AND middle_middle=b AND top_right=o THEN negative
+IF NOT middle_middle=o AND bottom_left=o AND top_left=o AND NOT middle_left=o AND bottom_middle=o AND NOT top_middle=x THEN positive
+IF NOT middle_middle=o AND bottom_left=o AND top_left=o AND NOT middle_left=o AND bottom_middle=o AND top_middle=x AND NOT middle_middle=x AND NOT bottom_right=x THEN negative
+IF NOT middle_middle=o AND bottom_left=o AND top_left=o AND NOT middle_left=o AND bottom_middle=o AND top_middle=x AND NOT middle_middle=x AND bottom_right=x THEN positive
+IF NOT middle_middle=o AND bottom_left=o AND top_left=o AND NOT middle_left=o AND bottom_middle=o AND top_middle=x AND middle_middle=x THEN negative
+IF NOT middle_middle=o AND bottom_left=o AND top_left=o AND middle_left=o THEN negative
+IF middle_middle=o AND NOT top_right=x AND NOT bottom_left=x THEN negative
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND NOT bottom_middle=o AND NOT top_middle=x AND NOT top_left=o THEN positive
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND NOT bottom_middle=o AND NOT top_middle=x AND top_left=o AND NOT top_right=b THEN negative
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND NOT bottom_middle=o AND NOT top_middle=x AND top_left=o AND top_right=b AND NOT bottom_right=x THEN negative
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND NOT bottom_middle=o AND NOT top_middle=x AND top_left=o AND top_right=b AND bottom_right=x THEN positive
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND NOT bottom_middle=o AND top_middle=x AND NOT bottom_right=x AND NOT bottom_middle=b THEN negative
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND NOT bottom_middle=o AND top_middle=x AND NOT bottom_right=x AND bottom_middle=b AND NOT top_right=o THEN negative
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND NOT bottom_middle=o AND top_middle=x AND NOT bottom_right=x AND bottom_middle=b AND top_right=o THEN positive
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND NOT bottom_middle=o AND top_middle=x AND bottom_right=x AND NOT bottom_middle=b THEN positive
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND NOT bottom_middle=o AND top_middle=x AND bottom_right=x AND bottom_middle=b THEN negative
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND bottom_middle=o AND NOT top_middle=x THEN negative
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND bottom_middle=o AND top_middle=x AND NOT bottom_right=x THEN positive
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND bottom_middle=o AND top_middle=x AND bottom_right=x AND NOT middle_left=x THEN negative
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND bottom_middle=o AND top_middle=x AND bottom_right=x AND middle_left=x AND NOT top_left=x THEN negative
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND NOT top_middle=b AND bottom_middle=o AND top_middle=x AND bottom_right=x AND middle_left=x AND top_left=x THEN positive
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND top_middle=b AND NOT bottom_right=o AND NOT middle_left=o THEN positive
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND top_middle=b AND NOT bottom_right=o AND middle_left=o AND NOT middle_right=o THEN positive
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND top_middle=b AND NOT bottom_right=o AND middle_left=o AND middle_right=o THEN negative
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND top_middle=b AND bottom_right=o AND NOT top_left=o THEN positive
+IF middle_middle=o AND NOT top_right=x AND bottom_left=x AND top_middle=b AND bottom_right=o AND top_left=o THEN negative
+IF middle_middle=o AND top_right=x AND NOT top_left=x AND NOT bottom_right=x THEN negative
+IF middle_middle=o AND top_right=x AND NOT top_left=x AND bottom_right=x AND NOT middle_right=x AND NOT bottom_middle=x THEN negative
+IF middle_middle=o AND top_right=x AND NOT top_left=x AND bottom_right=x AND NOT middle_right=x AND bottom_middle=x AND NOT bottom_left=x THEN negative
+IF middle_middle=o AND top_right=x AND NOT top_left=x AND bottom_right=x AND NOT middle_right=x AND bottom_middle=x AND bottom_left=x THEN positive
+IF middle_middle=o AND top_right=x AND NOT top_left=x AND bottom_right=x AND middle_right=x THEN positive
+IF middle_middle=o AND top_right=x AND top_left=x AND NOT top_middle=x AND NOT top_middle=b AND NOT bottom_middle=o AND NOT middle_right=x AND NOT bottom_right=x THEN positive
+IF middle_middle=o AND top_right=x AND top_left=x AND NOT top_middle=x AND NOT top_middle=b AND NOT bottom_middle=o AND NOT middle_right=x AND bottom_right=x THEN negative
+IF middle_middle=o AND top_right=x AND top_left=x AND NOT top_middle=x AND NOT top_middle=b AND NOT bottom_middle=o AND middle_right=x AND NOT middle_left=x THEN positive
+IF middle_middle=o AND top_right=x AND top_left=x AND NOT top_middle=x AND NOT top_middle=b AND NOT bottom_middle=o AND middle_right=x AND middle_left=x THEN negative
+IF middle_middle=o AND top_right=x AND top_left=x AND NOT top_middle=x AND NOT top_middle=b AND bottom_middle=o THEN negative
+IF middle_middle=o AND top_right=x AND top_left=x AND NOT top_middle=x AND top_middle=b AND NOT middle_left=o THEN positive
+IF middle_middle=o AND top_right=x AND top_left=x AND NOT top_middle=x AND top_middle=b AND middle_left=o AND NOT middle_right=o THEN positive
+IF middle_middle=o AND top_right=x AND top_left=x AND NOT top_middle=x AND top_middle=b AND middle_left=o AND middle_right=o THEN negative
+IF middle_middle=o AND top_right=x AND top_left=x AND top_middle=x THEN positive

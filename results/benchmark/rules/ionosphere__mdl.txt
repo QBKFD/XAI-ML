@@ -1,0 +1,7 @@
+# MDL on ionosphere, seed 42
+# rule list (first matching rule applies); 3 rules
+
+IF a05=-inf_to_0.04144 THEN b
+ELSE IF NOT a18=-0.79667_to_0.99361 AND NOT a08=0.001505_to_0.994515 THEN b
+ELSE IF a03=-inf_to_0.19028 THEN b
+ELSE PREDICT g

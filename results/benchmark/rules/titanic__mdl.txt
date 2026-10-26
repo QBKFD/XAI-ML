@@ -1,0 +1,7 @@
+# MDL on titanic, seed 42
+# rule list (first matching rule applies); 3 rules
+
+IF NOT Passenger_Cat=3rd_class AND Gender == 0 THEN survived
+ELSE IF NOT Passenger_Cat=3rd_class AND Age_Cat == 0 THEN survived
+ELSE IF Gender == 0 THEN died
+ELSE PREDICT died

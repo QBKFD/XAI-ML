@@ -1,0 +1,24 @@
+# IDS on tictactoe, seed 42
+# rule set (unordered); 20 rules
+
+IF middle_middle == x AND top_left == x AND bottom_right == x THEN positive
+IF middle_middle == x AND middle_right == x AND middle_left == x THEN positive
+IF bottom_right == x AND bottom_middle == x AND bottom_left == x THEN positive
+IF top_left == o AND middle_left == o AND bottom_left == o THEN negative
+IF middle_middle == o AND middle_right == o AND middle_left == o THEN negative
+IF top_right == o AND middle_right == o AND bottom_right == o THEN negative
+IF top_left == b AND bottom_right == b AND middle_middle == x THEN positive
+IF top_middle == o AND top_right == o AND top_left == o THEN negative
+IF top_right == b AND bottom_left == b AND middle_middle == x THEN positive
+IF top_left == b AND top_middle == o AND middle_left == o THEN positive
+IF middle_right == b AND middle_left == o AND bottom_right == o THEN positive
+IF top_middle == b AND bottom_left == b AND bottom_middle == o THEN positive
+IF bottom_right == b AND top_left == x AND middle_middle == x THEN positive
+IF top_right == x AND middle_middle == b AND top_middle == o THEN positive
+IF middle_right == b AND bottom_left == b AND middle_left == o THEN positive
+IF top_right == b AND middle_middle == x AND bottom_left == x THEN positive
+IF top_right == b AND bottom_middle == b AND top_middle == o THEN positive
+IF top_right == x AND middle_middle == b AND bottom_left == x THEN positive
+IF middle_right == b AND middle_left == o AND top_left == b THEN positive
+IF top_right == b AND middle_left == b AND middle_right == o THEN positive
+OTHERWISE PREDICT positive

@@ -1,0 +1,25 @@
+# C4.5 on cells, seed 42
+# rule set (unordered); 22 rules
+
+IF UnifSize <= 2.5 AND BareNuc <= 3.5 AND Clump <= 7.5 THEN benign
+IF UnifSize <= 2.5 AND BareNuc <= 3.5 AND Clump > 7.5 THEN benign
+IF UnifSize <= 2.5 AND BareNuc > 3.5 AND Clump <= 3.5 THEN benign
+IF UnifSize <= 2.5 AND BareNuc > 3.5 AND Clump > 3.5 AND BlandChrom <= 2.5 THEN benign
+IF UnifSize <= 2.5 AND BareNuc > 3.5 AND Clump > 3.5 AND BlandChrom > 2.5 THEN malignant
+IF UnifSize > 2.5 AND BareNuc <= 3.5 AND UnifSize <= 7 AND UnifShape <= 2.5 THEN benign
+IF UnifSize > 2.5 AND BareNuc <= 3.5 AND UnifSize <= 7 AND UnifShape > 2.5 AND Mit <= 1.5 AND NormNucl <= 2.5 THEN benign
+IF UnifSize > 2.5 AND BareNuc <= 3.5 AND UnifSize <= 7 AND UnifShape > 2.5 AND Mit <= 1.5 AND NormNucl > 2.5 AND MargAdh <= 9.5 AND SingEpiSize <= 5.5 AND NormNucl <= 6 THEN benign
+IF UnifSize > 2.5 AND BareNuc <= 3.5 AND UnifSize <= 7 AND UnifShape > 2.5 AND Mit <= 1.5 AND NormNucl > 2.5 AND MargAdh <= 9.5 AND SingEpiSize <= 5.5 AND NormNucl > 6 THEN malignant
+IF UnifSize > 2.5 AND BareNuc <= 3.5 AND UnifSize <= 7 AND UnifShape > 2.5 AND Mit <= 1.5 AND NormNucl > 2.5 AND MargAdh <= 9.5 AND SingEpiSize > 5.5 THEN benign
+IF UnifSize > 2.5 AND BareNuc <= 3.5 AND UnifSize <= 7 AND UnifShape > 2.5 AND Mit <= 1.5 AND NormNucl > 2.5 AND MargAdh > 9.5 THEN malignant
+IF UnifSize > 2.5 AND BareNuc <= 3.5 AND UnifSize <= 7 AND UnifShape > 2.5 AND Mit > 1.5 THEN malignant
+IF UnifSize > 2.5 AND BareNuc <= 3.5 AND UnifSize > 7 THEN malignant
+IF UnifSize > 2.5 AND BareNuc > 3.5 AND MargAdh <= 5.5 AND Clump <= 6.5 AND BlandChrom <= 4.5 AND Clump <= 5.5 AND MargAdh <= 1.5 THEN benign
+IF UnifSize > 2.5 AND BareNuc > 3.5 AND MargAdh <= 5.5 AND Clump <= 6.5 AND BlandChrom <= 4.5 AND Clump <= 5.5 AND MargAdh > 1.5 THEN malignant
+IF UnifSize > 2.5 AND BareNuc > 3.5 AND MargAdh <= 5.5 AND Clump <= 6.5 AND BlandChrom <= 4.5 AND Clump > 5.5 AND BlandChrom <= 3.5 THEN benign
+IF UnifSize > 2.5 AND BareNuc > 3.5 AND MargAdh <= 5.5 AND Clump <= 6.5 AND BlandChrom <= 4.5 AND Clump > 5.5 AND BlandChrom > 3.5 THEN benign
+IF UnifSize > 2.5 AND BareNuc > 3.5 AND MargAdh <= 5.5 AND Clump <= 6.5 AND BlandChrom > 4.5 THEN malignant
+IF UnifSize > 2.5 AND BareNuc > 3.5 AND MargAdh <= 5.5 AND Clump > 6.5 AND MargAdh <= 4.5 THEN malignant
+IF UnifSize > 2.5 AND BareNuc > 3.5 AND MargAdh <= 5.5 AND Clump > 6.5 AND MargAdh > 4.5 AND UnifShape <= 4.5 THEN benign
+IF UnifSize > 2.5 AND BareNuc > 3.5 AND MargAdh <= 5.5 AND Clump > 6.5 AND MargAdh > 4.5 AND UnifShape > 4.5 THEN malignant
+IF UnifSize > 2.5 AND BareNuc > 3.5 AND MargAdh > 5.5 THEN malignant

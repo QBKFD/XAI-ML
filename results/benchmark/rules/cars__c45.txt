@@ -1,0 +1,69 @@
+# C4.5 on cars, seed 42
+# rule set (unordered); 66 rules
+
+IF safety <= 0.5 THEN unacc
+IF safety > 0.5 AND persons <= 0.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety <= 1.5 AND lug_boot <= 0.5 AND doors <= 0.5 AND persons <= 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety <= 1.5 AND lug_boot <= 0.5 AND doors <= 0.5 AND persons > 1.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety <= 1.5 AND lug_boot <= 0.5 AND doors > 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety <= 1.5 AND lug_boot > 0.5 AND maint <= 0.5 AND doors <= 1.5 AND lug_boot <= 1.5 AND doors <= 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety <= 1.5 AND lug_boot > 0.5 AND maint <= 0.5 AND doors <= 1.5 AND lug_boot <= 1.5 AND doors > 0.5 AND persons <= 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety <= 1.5 AND lug_boot > 0.5 AND maint <= 0.5 AND doors <= 1.5 AND lug_boot <= 1.5 AND doors > 0.5 AND persons > 1.5 THEN good
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety <= 1.5 AND lug_boot > 0.5 AND maint <= 0.5 AND doors <= 1.5 AND lug_boot > 1.5 THEN good
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety <= 1.5 AND lug_boot > 0.5 AND maint <= 0.5 AND doors > 1.5 THEN good
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety <= 1.5 AND lug_boot > 0.5 AND maint > 0.5 AND buying <= 0.5 AND doors <= 0.5 AND lug_boot <= 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety <= 1.5 AND lug_boot > 0.5 AND maint > 0.5 AND buying <= 0.5 AND doors <= 0.5 AND lug_boot > 1.5 THEN good
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety <= 1.5 AND lug_boot > 0.5 AND maint > 0.5 AND buying <= 0.5 AND doors > 0.5 THEN good
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety <= 1.5 AND lug_boot > 0.5 AND maint > 0.5 AND buying > 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot <= 0.5 AND doors <= 0.5 AND persons <= 1.5 AND maint <= 0.5 THEN good
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot <= 0.5 AND doors <= 0.5 AND persons <= 1.5 AND maint > 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot <= 0.5 AND doors <= 0.5 AND persons > 1.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot <= 0.5 AND doors > 0.5 AND buying <= 0.5 THEN good
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot <= 0.5 AND doors > 0.5 AND buying > 0.5 AND maint <= 0.5 THEN good
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot <= 0.5 AND doors > 0.5 AND buying > 0.5 AND maint > 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND doors <= 1.5 AND buying <= 0.5 AND doors <= 0.5 THEN good
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND doors <= 1.5 AND buying <= 0.5 AND doors > 0.5 AND persons <= 1.5 THEN good
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND doors <= 1.5 AND buying <= 0.5 AND doors > 0.5 AND persons > 1.5 THEN vgood
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND doors <= 1.5 AND buying > 0.5 AND maint <= 0.5 THEN good
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND doors <= 1.5 AND buying > 0.5 AND maint > 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND doors > 1.5 THEN vgood
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint <= 1.5 AND safety > 1.5 AND lug_boot > 0.5 AND lug_boot > 1.5 THEN vgood
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot <= 0.5 AND safety <= 1.5 AND buying <= 0.5 AND maint <= 2.5 AND doors <= 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot <= 0.5 AND safety <= 1.5 AND buying <= 0.5 AND maint <= 2.5 AND doors > 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot <= 0.5 AND safety <= 1.5 AND buying <= 0.5 AND maint > 2.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot <= 0.5 AND safety <= 1.5 AND buying > 0.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot <= 0.5 AND safety > 1.5 AND doors <= 0.5 AND persons <= 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot <= 0.5 AND safety > 1.5 AND doors <= 0.5 AND persons > 1.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot <= 0.5 AND safety > 1.5 AND doors > 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot > 0.5 AND safety <= 1.5 AND lug_boot <= 1.5 AND doors <= 1.5 AND persons <= 1.5 AND maint <= 2.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot > 0.5 AND safety <= 1.5 AND lug_boot <= 1.5 AND doors <= 1.5 AND persons <= 1.5 AND maint > 2.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot > 0.5 AND safety <= 1.5 AND lug_boot <= 1.5 AND doors <= 1.5 AND persons > 1.5 AND doors <= 0.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot > 0.5 AND safety <= 1.5 AND lug_boot <= 1.5 AND doors <= 1.5 AND persons > 1.5 AND doors > 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot > 0.5 AND safety <= 1.5 AND lug_boot <= 1.5 AND doors > 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot > 0.5 AND safety <= 1.5 AND lug_boot > 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot > 0.5 AND safety > 1.5 AND buying <= 0.5 AND maint <= 2.5 AND lug_boot <= 1.5 AND doors <= 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot > 0.5 AND safety > 1.5 AND buying <= 0.5 AND maint <= 2.5 AND lug_boot <= 1.5 AND doors > 0.5 AND persons <= 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot > 0.5 AND safety > 1.5 AND buying <= 0.5 AND maint <= 2.5 AND lug_boot <= 1.5 AND doors > 0.5 AND persons > 1.5 THEN vgood
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot > 0.5 AND safety > 1.5 AND buying <= 0.5 AND maint <= 2.5 AND lug_boot > 1.5 THEN vgood
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot > 0.5 AND safety > 1.5 AND buying <= 0.5 AND maint > 2.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying <= 1.5 AND maint > 1.5 AND lug_boot > 0.5 AND safety > 1.5 AND buying > 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint <= 1.5 AND lug_boot <= 0.5 AND safety <= 1.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint <= 1.5 AND lug_boot <= 0.5 AND safety > 1.5 AND doors <= 0.5 AND persons <= 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint <= 1.5 AND lug_boot <= 0.5 AND safety > 1.5 AND doors <= 0.5 AND persons > 1.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint <= 1.5 AND lug_boot <= 0.5 AND safety > 1.5 AND doors > 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint <= 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND safety <= 1.5 AND doors <= 1.5 AND doors <= 0.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint <= 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND safety <= 1.5 AND doors <= 1.5 AND doors > 0.5 AND persons <= 1.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint <= 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND safety <= 1.5 AND doors <= 1.5 AND doors > 0.5 AND persons > 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint <= 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND safety <= 1.5 AND doors > 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint <= 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND safety > 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint <= 1.5 AND lug_boot > 0.5 AND lug_boot > 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint > 1.5 AND buying <= 2.5 AND safety <= 1.5 AND lug_boot <= 0.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint > 1.5 AND buying <= 2.5 AND safety <= 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND doors <= 1.5 AND persons <= 1.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint > 1.5 AND buying <= 2.5 AND safety <= 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND doors <= 1.5 AND persons > 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint > 1.5 AND buying <= 2.5 AND safety <= 1.5 AND lug_boot > 0.5 AND lug_boot <= 1.5 AND doors > 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint > 1.5 AND buying <= 2.5 AND safety <= 1.5 AND lug_boot > 0.5 AND lug_boot > 1.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint > 1.5 AND buying <= 2.5 AND safety > 1.5 AND doors <= 0.5 AND lug_boot <= 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint > 1.5 AND buying <= 2.5 AND safety > 1.5 AND doors <= 0.5 AND lug_boot > 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint > 1.5 AND buying <= 2.5 AND safety > 1.5 AND doors > 0.5 THEN acc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint <= 2.5 AND maint > 1.5 AND buying > 2.5 THEN unacc
+IF safety > 0.5 AND persons > 0.5 AND buying > 1.5 AND maint > 2.5 THEN unacc
