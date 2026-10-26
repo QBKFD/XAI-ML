@@ -63,9 +63,9 @@ class IDSModel(RuleModel):
             raise ValueError("IDS needs exactly seven lambda weights")
         df, qdf = self._frame(X, y)
         if self.random_seed is not None:
-            # pyIDS also draws from the global generators. Results can still
-            # vary a little between Python processes because it iterates over
-            # sets of rules, whose order depends on PYTHONHASHSEED.
+            # pyIDS draws from the global generators. Together with the hash
+            # patch in compat.py and a fixed PYTHONHASHSEED (set by the
+            # scripts) this makes IDS runs repeatable.
             random.seed(self.random_seed)
             np.random.seed(self.random_seed)
         with quiet():

@@ -138,8 +138,9 @@ def to_rows(result: dict) -> list[dict]:
 def pin_hash_seed() -> None:
     """Re-run this script with PYTHONHASHSEED=0.
 
-    pyIDS iterates over Python sets, so without a fixed hash seed IDS can pick
-    slightly different rules in every process even with the same random seed.
+    pyIDS iterates over sets of rules, whose order depends on string hashes;
+    without a fixed hash seed IDS picks slightly different rules in every
+    process even with the same random seed.
     """
     if os.environ.get("PYTHONHASHSEED") != "0":
         os.environ["PYTHONHASHSEED"] = "0"

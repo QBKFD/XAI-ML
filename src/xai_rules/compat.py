@@ -77,4 +77,29 @@ def apply() -> None:
     for name in _QUANTILE_FUNCS:
         setattr(np, name, _accept_interpolation_kwarg(getattr(np, name)))
 
+    _patch_pyarc_rule_hash()
     _APPLIED = True
+
+
+def _patch_pyarc_rule_hash() -> None:
+    """Make pyIDS runs repeatable.
+
+    pyarc's ``ClassAssocationRule`` hashes by object identity, and pyIDS keeps
+    rules in sets, so the iteration order (and the selected rules) depended
+    on memory addresses and changed from run to run. Hashing by content gives
+    a stable order once ``PYTHONHASHSEED`` is fixed (the scripts fix it).
+    Equality stays identity-based, so this does not change which rules are
+    considered equal.
+    """
+    try:
+        from pyarc.data_structures.car import ClassAssocationRule
+    except ImportError:
+        return
+    if getattr(ClassAssocationRule, "_xai_rules_hash", False):
+        return
+
+    def content_hash(self):
+        return hash((self.antecedent, repr(self.consequent)))
+
+    ClassAssocationRule.__hash__ = content_hash
+    ClassAssocationRule._xai_rules_hash = True

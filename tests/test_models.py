@@ -106,3 +106,15 @@ def test_run_one_records_failures_instead_of_raising(titanic_split):
 def test_unknown_model():
     with pytest.raises(KeyError, match="ruleopt"):
         get_model("xgboost")
+
+
+@pytest.mark.slow
+def test_ids_is_repeatable(titanic_split):
+    """Same data, same seed, same rules (needs the pyarc hash patch in compat)."""
+    _require("ids")
+    from xai_rules.rules import format_rules
+
+    X_tr, _ = titanic_split.view("categorical")
+    a = get_model("ids", rule_cutoff=20).fit(X_tr, titanic_split.y_train)
+    b = get_model("ids", rule_cutoff=20).fit(X_tr, titanic_split.y_train)
+    assert format_rules(a.rules_, False) == format_rules(b.rules_, False)
