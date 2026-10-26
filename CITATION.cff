@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this code or these results, please cite the thesis."
+title: "Explainable machine learning using mathematical optimization: rule based methods"
+type: software
+authors:
+  - family-names: Waszczak
+    given-names: Jakub
+repository-code: "https://github.com/QBKFD/XAI-ML"
+date-released: 2024-07-07
+preferred-citation:
+  type: thesis
+  title: "Explainable machine learning using mathematical optimization: rule based methods"
+  authors:
+    - family-names: Waszczak
+      given-names: Jakub
+  thesis-type: "Bachelor's thesis"
+  institution:
+    name: "University of Amsterdam"
+  year: 2024
