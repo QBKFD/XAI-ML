@@ -1,7 +1,7 @@
 """Draw the README figures from the benchmark results.
 
-    python scripts/make_figures.py
-    python scripts/make_figures.py --results results/benchmark --out docs/figures
+python scripts/make_figures.py
+python scripts/make_figures.py --results results/benchmark --out docs/figures
 """
 
 from __future__ import annotations
@@ -38,7 +38,9 @@ def main() -> int:
     ]
     if args.thesis.exists():
         written.append(
-            plotting.thesis_vs_reproduced(summary, pd.read_csv(args.thesis), args.out / "thesis_vs_reproduced.png")
+            plotting.thesis_vs_reproduced(
+                summary, pd.read_csv(args.thesis), args.out / "thesis_vs_reproduced.png"
+            )
         )
     for path in written:
         print(path.relative_to(ROOT) if path.is_relative_to(ROOT) else path)

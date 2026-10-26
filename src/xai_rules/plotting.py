@@ -26,8 +26,17 @@ GRID = "#e6e5e1"
 MISSING = "#efeeea"
 
 DATASET_ORDER = [
-    "cells", "titanic", "tictactoe", "sonar", "ionosphere", "liver", "compas",
-    "cars", "glass", "doctor", "drybeans",
+    "cells",
+    "titanic",
+    "tictactoe",
+    "sonar",
+    "ionosphere",
+    "liver",
+    "compas",
+    "cars",
+    "glass",
+    "doctor",
+    "drybeans",
 ]
 MODEL_ORDER = list(MODELS)
 NAMES = {k: cls.display_name for k, cls in MODELS.items()}
@@ -74,9 +83,8 @@ def accuracy_heatmap(summary: pd.DataFrame, path: Path, metric: str = "accuracy"
     _style()
     datasets = _datasets(summary)
     models = [m for m in MODEL_ORDER if m in set(summary["model"])]
-    grid = (
-        summary.pivot(index="dataset", columns="model", values=f"{metric}_mean")
-        .reindex(index=datasets, columns=models)
+    grid = summary.pivot(index="dataset", columns="model", values=f"{metric}_mean").reindex(
+        index=datasets, columns=models
     )
     values = grid.to_numpy(dtype=float)
 
@@ -96,8 +104,16 @@ def accuracy_heatmap(summary: pd.DataFrame, path: Path, metric: str = "accuracy"
                 continue
             dark = (v - lo) / (1 - lo) > 0.55
             weight = "bold" if best is not None and np.isclose(v, best) else "normal"
-            ax.text(j, i, f"{v:.2f}", ha="center", va="center", fontsize=9,
-                    color="white" if dark else INK, fontweight=weight)
+            ax.text(
+                j,
+                i,
+                f"{v:.2f}",
+                ha="center",
+                va="center",
+                fontsize=9,
+                color="white" if dark else INK,
+                fontweight=weight,
+            )
 
     ax.set_xticks(range(len(models)), [NAMES[m] for m in models])
     ax.set_yticks(range(len(datasets)), datasets)
@@ -113,7 +129,9 @@ def accuracy_heatmap(summary: pd.DataFrame, path: Path, metric: str = "accuracy"
     n_rule = sum(m in RULE_LEARNERS for m in models)
     ax.axvline(n_rule - 0.5, color=SURFACE, linewidth=6)
     label = metric.replace("_", " ").replace("roc auc", "ROC AUC")
-    ax.set_title(f"Test {label}, mean over 5 splits (best per row in bold)", pad=28)
+    n = int(summary["n_runs"].max()) if "n_runs" in summary else 1
+    splits = f"mean over {n} splits" if n > 1 else "one split"
+    ax.set_title(f"Test {label}, {splits} (best per row in bold)", pad=28)
     return _save(fig, path)
 
 
@@ -155,7 +173,7 @@ def accuracy_vs_rules(summary: pd.DataFrame, path: Path) -> Path:
         ax.set_axisbelow(True)
         to_label.append((ax, points))
 
-    for ax in axes.flat[len(datasets):]:
+    for ax in axes.flat[len(datasets) :]:
         ax.set_visible(False)
     for ax in axes[:, 0]:
         ax.set_ylabel("test accuracy")
@@ -163,13 +181,23 @@ def accuracy_vs_rules(summary: pd.DataFrame, path: Path) -> Path:
         ax.set_xlabel("number of rules (log scale)")
 
     handles = [
-        plt.Line2D([], [], marker="o", linestyle="", color=SERIES[0], label="optimisation-based rule learner"),
-        plt.Line2D([], [], marker="o", linestyle="", color=SERIES[1], label="decision tree (one rule per leaf)"),
+        plt.Line2D(
+            [], [], marker="o", linestyle="", color=SERIES[0], label="optimisation-based rule learner"
+        ),
+        plt.Line2D(
+            [], [], marker="o", linestyle="", color=SERIES[1], label="decision tree (one rule per leaf)"
+        ),
         plt.Line2D([], [], color=INK_3, linestyle=(0, (4, 3)), label="Random Forest accuracy"),
     ]
     fig.legend(handles=handles, loc="upper left", ncol=3, bbox_to_anchor=(0.0, 1.02))
-    fig.suptitle("Accuracy against model size: up and to the left is better", x=0.0, y=1.07,
-                 ha="left", fontweight="bold", color=INK)
+    fig.suptitle(
+        "Accuracy against model size: up and to the left is better",
+        x=0.0,
+        y=1.07,
+        ha="left",
+        fontweight="bold",
+        color=INK,
+    )
     fig.tight_layout()
     for ax, points in to_label:
         _label_points(ax, points)
@@ -195,9 +223,17 @@ def _label_points(ax, points) -> None:
             if not any(box[0] < b[2] and b[0] < box[2] and box[1] < b[3] and b[1] < box[3] for b in placed):
                 break
         placed.append(box)
-        ax.annotate(NAMES[m], (x, y), xytext=(6, dy), textcoords="offset points", fontsize=7.5,
-                    color=INK_2, va="center", zorder=2,
-                    bbox={"boxstyle": "square,pad=0.1", "fc": SURFACE, "ec": "none", "alpha": 0.85})
+        ax.annotate(
+            NAMES[m],
+            (x, y),
+            xytext=(6, dy),
+            textcoords="offset points",
+            fontsize=7.5,
+            color=INK_2,
+            va="center",
+            zorder=2,
+            bbox={"boxstyle": "square,pad=0.1", "fc": SURFACE, "ec": "none", "alpha": 0.85},
+        )
 
 
 def rule_set_shape(summary: pd.DataFrame, path: Path) -> Path:
@@ -209,15 +245,28 @@ def rule_set_shape(summary: pd.DataFrame, path: Path) -> Path:
     width = 0.8 / len(models)
     x = np.arange(len(datasets))
 
-    panels = [("n_rules_mean", "Number of rules"), ("avg_rule_width_mean", "Average rule width (features per rule)")]
+    panels = [
+        ("n_rules_mean", "Number of rules"),
+        ("avg_rule_width_mean", "Average rule width (features per rule)"),
+    ]
     for ax, (col, title) in zip(axes, panels, strict=True):
         for k, m in enumerate(models):
             vals = (
-                summary[summary["model"] == m].set_index("dataset")[col].reindex(datasets).to_numpy(dtype=float)
+                summary[summary["model"] == m]
+                .set_index("dataset")[col]
+                .reindex(datasets)
+                .to_numpy(dtype=float)
             )
             pos = x - 0.4 + width * (k + 0.5)
-            ax.bar(pos, np.nan_to_num(vals), width=width - 0.03, color=SERIES[k], label=NAMES[m],
-                   edgecolor=SURFACE, linewidth=0.8)
+            ax.bar(
+                pos,
+                np.nan_to_num(vals),
+                width=width - 0.03,
+                color=SERIES[k],
+                label=NAMES[m],
+                edgecolor=SURFACE,
+                linewidth=0.8,
+            )
             for p, v in zip(pos, vals, strict=True):
                 if np.isnan(v):
                     ax.text(p, 0, "–", ha="center", va="bottom", fontsize=8, color=INK_3)
@@ -227,8 +276,13 @@ def rule_set_shape(summary: pd.DataFrame, path: Path) -> Path:
         ax.tick_params(axis="x", length=0)
     axes[1].set_xticks(x, datasets)
     axes[0].legend(ncol=len(models), loc="upper left", bbox_to_anchor=(0, 1.22))
-    fig.text(0.0, -0.01, "– = not run (CORELS: binary targets only; IDS: more than 5000 training rows). "
-             "Mean over 5 splits.", fontsize=8, color=INK_3)
+    fig.text(
+        0.0,
+        -0.01,
+        "– = not run (CORELS: binary targets only; IDS: more than 5000 training rows).",
+        fontsize=8,
+        color=INK_3,
+    )
     fig.tight_layout()
     return _save(fig, path)
 
@@ -236,30 +290,48 @@ def rule_set_shape(summary: pd.DataFrame, path: Path) -> Path:
 def thesis_vs_reproduced(summary: pd.DataFrame, thesis: pd.DataFrame, path: Path) -> Path:
     """Accuracy from Table 2 of the thesis against the reproduced mean."""
     _style()
-    acc = thesis[thesis["metric"] == "accuracy"].melt(id_vars=["metric", "dataset"], var_name="model",
-                                                      value_name="thesis").dropna()
+    acc = (
+        thesis[thesis["metric"] == "accuracy"]
+        .melt(id_vars=["metric", "dataset"], var_name="model", value_name="thesis")
+        .dropna()
+    )
     now = summary[["dataset", "model", "accuracy_mean", "accuracy_std"]]
     df = acc.merge(now, on=["dataset", "model"], how="inner")
 
     fig, ax = plt.subplots(figsize=(6.2, 6.0))
     ax.plot([0.3, 1.0], [0.3, 1.0], color=INK_3, linewidth=1, linestyle=(0, (4, 3)), zorder=1)
-    ax.errorbar(df["thesis"], df["accuracy_mean"], yerr=df["accuracy_std"], fmt="none",
-                ecolor=BLUE_RAMP[2], elinewidth=1, zorder=2)
-    ax.scatter(df["thesis"], df["accuracy_mean"], s=40, color=SERIES[0], edgecolor=SURFACE,
-               linewidth=1.5, zorder=3)
+    ax.errorbar(
+        df["thesis"],
+        df["accuracy_mean"],
+        yerr=df["accuracy_std"],
+        fmt="none",
+        ecolor=BLUE_RAMP[2],
+        elinewidth=1,
+        zorder=2,
+    )
+    ax.scatter(
+        df["thesis"], df["accuracy_mean"], s=40, color=SERIES[0], edgecolor=SURFACE, linewidth=1.5, zorder=3
+    )
     for _, r in df.iterrows():
         if abs(r["accuracy_mean"] - r["thesis"]) >= 0.08:
             right = r["thesis"] > 0.75
-            ax.annotate(f"{NAMES[r['model']]}, {r['dataset']}", (r["thesis"], r["accuracy_mean"]),
-                        xytext=(-7 if right else 7, 0), textcoords="offset points", fontsize=8,
-                        color=INK_2, ha="right" if right else "left", va="center")
+            ax.annotate(
+                f"{NAMES[r['model']]}, {r['dataset']}",
+                (r["thesis"], r["accuracy_mean"]),
+                xytext=(-7 if right else 7, 0),
+                textcoords="offset points",
+                fontsize=8,
+                color=INK_2,
+                ha="right" if right else "left",
+                va="center",
+            )
     ax.set_xlim(0.3, 1.0)
     ax.set_ylim(0.3, 1.0)
     ax.set_aspect("equal")
     ax.grid(color=GRID, linewidth=0.8)
     ax.set_axisbelow(True)
     ax.set_xlabel("accuracy in the thesis (Table 2, one split)")
-    ax.set_ylabel("accuracy now (mean ± sd over 5 splits)")
+    ax.set_ylabel("accuracy now (mean ± sd over splits)")
     diff = (df["accuracy_mean"] - df["thesis"]).abs()
     ax.set_title(f"Thesis vs. this repository\nmedian absolute difference {diff.median():.3f}")
     return _save(fig, path)
