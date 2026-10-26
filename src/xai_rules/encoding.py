@@ -104,9 +104,13 @@ class Discretizer:
             else:
                 qs = np.linspace(0, 1, self.n_bins + 1)[1:-1]
                 edges = sorted(set(np.round(s.quantile(qs).to_numpy(dtype=float), 6)))
-                # Drop cut points that would leave an empty first bin.
-                edges = [e for e in edges if e > s.min()]
-                self.edges_[col] = edges or None
+                # Drop cut points that would leave the first or last bin empty.
+                edges = [e for e in edges if s.min() < e < s.max()]
+                if not edges:
+                    # Skewed column (e.g. mostly zeros): the quantiles collapse
+                    # onto the minimum. Split "at the minimum" vs "above it".
+                    edges = [float(s.min())]
+                self.edges_[col] = edges
         return self
 
     @staticmethod

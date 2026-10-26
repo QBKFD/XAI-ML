@@ -60,3 +60,10 @@ def test_binary_encoder_single_column_for_two_levels():
 def test_make_encoder_rejects_unknown_view():
     with pytest.raises(ValueError):
         make_encoder("ordinal")
+
+
+def test_discretizer_handles_mostly_zero_columns():
+    # Like glass's Ba column: tertiles are all 0, values above are rare.
+    train = pd.DataFrame({"ba": [0.0] * 90 + [0.3, 0.6, 1.1, 1.5, 2.0, 0.9, 0.2, 0.7, 1.2, 3.1]})
+    out = Discretizer(n_bins=3).fit_transform(train)
+    assert set(out["ba"]) == {"<=0", ">0"}
