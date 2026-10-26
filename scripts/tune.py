@@ -20,6 +20,7 @@ import argparse
 import json
 import logging
 import os
+import random
 import sys
 import time
 from pathlib import Path
@@ -108,8 +109,11 @@ def tune_ids(dataset: str, seed: int, low: int, high: int, max_iterations: int, 
         ternary_search_precision=precision,
         max_iterations=max_iterations,
     )
-    best = ascent.fit()
-    lambdas = tuple(float(best[f"l{i}"]) for i in range(1, 8))
+    # The starting point is drawn at random; seed it so tuning is repeatable.
+    random.seed(seed)
+    np.random.seed(seed)
+    best = ascent.fit()  # list of the seven weights, in l1..l7 order
+    lambdas = tuple(float(v) for v in best)
 
     default = IDSModel().fit(X_tr, split.y_train)
     tuned = IDSModel(lambdas=lambdas).fit(X_tr, split.y_train)
