@@ -1,0 +1,32 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install package
+        run: python -m pip install -e ".[dev]"
+      - name: Install MDL, IDS and CORELS
+        run: bash scripts/install_legacy_deps.sh
+      - name: Lint
+        run: |
+          ruff check src scripts tests
+          ruff format --check src scripts tests
+      - name: Test
+        run: python -m pytest -v
+      - name: Benchmark smoke run
+        run: python scripts/run_benchmark.py --datasets titanic --seeds 42 --out /tmp/bench
