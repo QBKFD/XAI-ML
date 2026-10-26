@@ -78,3 +78,33 @@ def test_roc_auc_is_nan_without_probabilities():
 def test_format_rule_set_default():
     text = format_rules([Rule([Condition("a", ">", 2)], "p"), Rule([], "n")], ordered=False)
     assert text.splitlines() == ["IF a > 2 THEN p", "OTHERWISE PREDICT n"]
+
+
+def test_interval_categories_print_naturally():
+    assert str(Condition("NormNucl", "==", "<=2.5")) == "NormNucl <= 2.5"
+    assert str(Condition("Clump", "==", ">6.5")) == "Clump > 6.5"
+    assert str(Condition("Clump", "==", "(4.5,6.5]")) == "4.5 < Clump <= 6.5"
+
+
+def test_binary_threshold_conditions_are_collapsed():
+    from xai_rules.rules import simplify_binary_conditions
+
+    Xb = pd.DataFrame({"g=m": [0, 1, 0, 1], "age": [10.0, 20.0, 30.0, 40.0]})
+    rules = [
+        Rule([Condition("g=m", ">=", 0), Condition("g=m", "<", 1), Condition("age", ">", 15)], "p"),
+        Rule([Condition("g=m", ">", 0.5)], "q"),
+        Rule([Condition("g=m", ">=", 0)], "r"),  # always true -> dropped
+    ]
+    out = simplify_binary_conditions(rules, Xb)
+    assert [str(r) for r in out] == [
+        "IF age > 15 AND NOT g=m THEN p",
+        "IF g=m THEN q",
+        "DEFAULT THEN r",
+    ]
+    for before, after in zip(rules, out, strict=True):
+        assert (before.covers(Xb) == after.covers(Xb)).all()
+
+
+def test_equality_on_float_column_with_int_value():
+    Xf = pd.DataFrame({"f": [0.0, 1.0, 1.0]})
+    assert Condition("f", "==", 1).mask(Xf).tolist() == [False, True, True]

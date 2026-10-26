@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, ClassifierMixin
 
-from xai_rules.rules import Rule
+from xai_rules.rules import Rule, simplify_binary_conditions
 
 
 class NotApplicable(Exception):
@@ -71,6 +71,8 @@ class RuleModel(ClassifierMixin, BaseEstimator):
         self.feature_names_in_ = np.array(X.columns)
         self._fit(X, y)
         self.rules_ = self._extract_rules(X) if self.is_rule_model else None
+        if self.rules_ is not None:
+            self.rules_ = simplify_binary_conditions(self.rules_, X)
         return self
 
     def predict_proba(self, X: pd.DataFrame) -> np.ndarray:

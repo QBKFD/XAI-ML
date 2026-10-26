@@ -214,11 +214,27 @@ def _label_points(ax, points) -> None:
     scale = fig.dpi / 72
     char_w, line_h = 4.6 * scale, 10 * scale
     placed: list[tuple[float, float, float, float]] = []
+    r = 4 * scale  # markers are obstacles too
+    for x, y, _ in points:
+        px, py = ax.transData.transform((x, y))
+        placed.append((px - r, py - r, px + r, py + r))
+    # Right of the point first, then left, then a little above/below.
+    candidates = [
+        (6, 0, "left"),
+        (-6, 0, "right"),
+        (6, 10, "left"),
+        (6, -10, "left"),
+        (-6, 10, "right"),
+        (-6, -10, "right"),
+        (6, 20, "left"),
+        (6, -20, "left"),
+    ]
     for x, y, m in sorted(points, key=lambda p: -p[1]):
         px, py = ax.transData.transform((x, y))
         w = char_w * len(NAMES[m])
-        for dy in (2, -11, 13, -22, 24, -33):
-            x0, y0 = px + 6 * scale, py + dy * scale - line_h / 2
+        for dx, dy, ha in candidates:
+            x0 = px + dx * scale if ha == "left" else px + dx * scale - w
+            y0 = py + dy * scale - line_h / 2
             box = (x0, y0, x0 + w, y0 + line_h)
             if not any(box[0] < b[2] and b[0] < box[2] and box[1] < b[3] and b[1] < box[3] for b in placed):
                 break
@@ -226,10 +242,11 @@ def _label_points(ax, points) -> None:
         ax.annotate(
             NAMES[m],
             (x, y),
-            xytext=(6, dy),
+            xytext=(dx, dy),
             textcoords="offset points",
             fontsize=7.5,
             color=INK_2,
+            ha=ha,
             va="center",
             zorder=2,
             bbox={"boxstyle": "square,pad=0.1", "fc": SURFACE, "ec": "none", "alpha": 0.85},
@@ -246,7 +263,7 @@ def rule_set_shape(summary: pd.DataFrame, path: Path) -> Path:
     x = np.arange(len(datasets))
 
     panels = [
-        ("n_rules_mean", "Number of rules"),
+        ("n_rules_mean", "Number of rules (log scale; 0 = only a default rule)"),
         ("avg_rule_width_mean", "Average rule width (features per rule)"),
     ]
     for ax, (col, title) in zip(axes, panels, strict=True):
@@ -267,9 +284,18 @@ def rule_set_shape(summary: pd.DataFrame, path: Path) -> Path:
                 edgecolor=SURFACE,
                 linewidth=0.8,
             )
+            base = 0.42 if col == "n_rules_mean" else 0
             for p, v in zip(pos, vals, strict=True):
                 if np.isnan(v):
-                    ax.text(p, 0, "–", ha="center", va="bottom", fontsize=8, color=INK_3)
+                    ax.text(p, base, "–", ha="center", va="bottom", fontsize=8, color=INK_3)
+                elif v == 0 and col == "n_rules_mean":
+                    ax.text(p, base, "0", ha="center", va="bottom", fontsize=7.5, color=INK_3)
+        if col == "n_rules_mean":
+            # Log scale: RuleOpt's ~100 rules would otherwise flatten CORELS's single rule.
+            ax.set_yscale("log")
+            ax.set_ylim(0.4, None)
+            ax.set_yticks([1, 3, 10, 30, 100], ["1", "3", "10", "30", "100"])
+            ax.yaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
         ax.set_title(title, fontsize=10.5)
         ax.grid(axis="y", color=GRID, linewidth=0.8)
         ax.set_axisbelow(True)
