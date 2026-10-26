@@ -1,0 +1,5 @@
+# MDL on sonar, seed 42
+# rule list (first matching rule applies); 1 rule
+
+IF u < 0.765 AND l < 0.1601 AND as < 0.39575 THEN R
+ELSE PREDICT M

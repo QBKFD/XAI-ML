@@ -1,0 +1,5 @@
+# CORELS on ionosphere, seed 42
+# rule list (first matching rule applies); 1 rule
+
+IF a18=-0.79667_to_0.99361 AND NOT a05=-inf_to_0.04144 THEN g
+ELSE PREDICT b

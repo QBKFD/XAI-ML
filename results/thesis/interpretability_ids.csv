@@ -1,0 +1,9 @@
+dataset,frac_overlap,frac_uncovered,frac_classes,avg_rule_width,n_rules
+titanic,0.025,0.01,1.0,2.15,13
+sonar,0.0067,0.3810,1.0,2.0,25
+cells,0.1583,0.2429,1.0,2.89,18
+doctor,0.0,0.9790,1.0,1.95,22
+cars,0.07,0.44,0.5,2.13,15
+glass,0.0281,0.7442,0.5,2.93,14
+ionosphere,0.07,0.58,1.0,1.89,19
+tictactoe,0,0.64,1.0,3,17

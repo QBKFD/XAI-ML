@@ -1,0 +1,15 @@
+# C4.5 on titanic, seed 42
+# rule set (unordered); 12 rules
+
+IF Gender == 0 AND NOT Passenger_Cat=3rd_class AND NOT Passenger_Cat=1st_class AND Age_Cat == 0 THEN survived
+IF Gender == 0 AND NOT Passenger_Cat=3rd_class AND NOT Passenger_Cat=1st_class AND Age_Cat == 1 AND NOT Passenger_Cat=2nd_class THEN survived
+IF Gender == 0 AND NOT Passenger_Cat=3rd_class AND NOT Passenger_Cat=1st_class AND Age_Cat == 1 AND Passenger_Cat=2nd_class THEN survived
+IF Gender == 0 AND NOT Passenger_Cat=3rd_class AND Passenger_Cat=1st_class THEN survived
+IF Gender == 0 AND Passenger_Cat=3rd_class AND Age_Cat == 0 THEN died
+IF Gender == 0 AND Passenger_Cat=3rd_class AND Age_Cat == 1 THEN died
+IF Gender == 1 AND Age_Cat == 0 AND NOT Passenger_Cat=3rd_class THEN survived
+IF Gender == 1 AND Age_Cat == 0 AND Passenger_Cat=3rd_class THEN died
+IF Gender == 1 AND Age_Cat == 1 AND NOT Passenger_Cat=1st_class AND NOT Passenger_Cat=crew AND NOT Passenger_Cat=3rd_class THEN died
+IF Gender == 1 AND Age_Cat == 1 AND NOT Passenger_Cat=1st_class AND NOT Passenger_Cat=crew AND Passenger_Cat=3rd_class THEN died
+IF Gender == 1 AND Age_Cat == 1 AND NOT Passenger_Cat=1st_class AND Passenger_Cat=crew THEN died
+IF Gender == 1 AND Age_Cat == 1 AND Passenger_Cat=1st_class THEN died

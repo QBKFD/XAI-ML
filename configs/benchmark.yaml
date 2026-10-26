@@ -1,0 +1,30 @@
+# Settings for scripts/run_benchmark.py.
+#
+# Models run with their defaults unless overridden below, as in the thesis
+# (Table 2 used untuned models; tuning is a separate step, scripts/tune.py).
+
+seeds: [42, 0, 1, 2, 3]   # 42 is the split used in the thesis notebooks
+test_size: 0.2
+time_limit: 300           # seconds per fit, same limit as in the thesis
+
+datasets:
+  - cells
+  - cars
+  - glass
+  - tictactoe
+  - titanic
+  - doctor
+  - sonar
+  - ionosphere
+  - liver
+  - compas
+  - drybeans
+
+models: [ruleopt, mdl, ids, corels, cart, c45, random_forest]
+
+params:
+  default:
+    # Settings from notebooks/thesis/ruleopt.ipynb
+    ruleopt: {max_depth: 3, max_rmp_calls: 20, rule_cost: gini}
+  cars:
+    mdl: {max_depth: 3}

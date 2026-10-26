@@ -1,0 +1,5 @@
+# CORELS on liver, seed 42
+# rule list (first matching rule applies); 1 rule
+
+IF X_2_20.2+=1 AND X_4_20.0-=1 THEN 0
+ELSE PREDICT 1

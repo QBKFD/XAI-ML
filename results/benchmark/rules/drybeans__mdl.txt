@@ -1,0 +1,39 @@
+# MDL on drybeans, seed 42
+# rule list (first matching rule applies); 35 rules
+
+IF ShapeFactor2 < 0.00105228 AND AspectRation < 1.64032 THEN BOMBAY
+ELSE IF MajorAxisLength >= 396.863 AND Eccentricity < 0.735867 AND roundness >= 0.883109 THEN BOMBAY
+ELSE IF ShapeFactor3 < 0.549695 AND ShapeFactor1 >= 0.00627631 AND ConvexArea >= 33732 THEN HOROZ
+ELSE IF ShapeFactor2 < 0.00105228 AND ConvexArea < 71592 AND Extent < 0.70372 THEN HOROZ
+ELSE IF ShapeFactor2 >= 0.00105228 AND ShapeFactor2 < 0.00169144 AND roundness < 0.809261 AND ShapeFactor1 < 0.00627631 AND ShapeFactor3 >= 0.549695 AND ShapeFactor4 >= 0.992056 THEN BARBUNYA
+ELSE IF Perimeter >= 908.41 AND ShapeFactor3 >= 0.642101 AND roundness < 0.852977 AND ConvexArea >= 53893 AND ShapeFactor2 < 0.00200704 THEN BARBUNYA
+ELSE IF Compactness >= 0.821312 AND Perimeter >= 908.41 AND roundness >= 0.852977 AND roundness < 0.883109 AND ShapeFactor2 >= 0.001331 THEN BARBUNYA
+ELSE IF Perimeter >= 908.41 AND MinorAxisLength >= 203.77 AND ShapeFactor2 < 0.00169144 THEN CALI
+ELSE IF MinorAxisLength >= 203.77 AND roundness < 0.852977 AND AspectRation >= 1.35761 AND AspectRation < 1.55084 THEN BARBUNYA
+ELSE IF roundness < 0.809261 AND MajorAxisLength >= 297.131 THEN BARBUNYA
+ELSE IF ShapeFactor1 < 0.00701629 AND Compactness >= 0.857123 AND Extent >= 0.733796 AND ShapeFactor4 >= 0.994835 AND AspectRation < 1.35761 THEN SEKER
+ELSE IF MinorAxisLength >= 192.435 AND roundness >= 0.92973 AND Extent < 0.795269 AND Solidity >= 0.990674 THEN SEKER
+ELSE IF MinorAxisLength >= 203.77 AND ShapeFactor4 >= 0.998325 THEN SEKER
+ELSE IF ShapeFactor1 < 0.0066449 AND roundness < 0.852977 AND Extent >= 0.733796 AND Extent < 0.795269 THEN BARBUNYA
+ELSE IF ShapeFactor2 >= 0.00236474 AND MinorAxisLength >= 192.435 THEN SEKER
+ELSE IF ConvexArea >= 53893 AND Compactness >= 0.778639 THEN SIRA
+ELSE IF Perimeter >= 795.06 AND ShapeFactor2 < 0.00200704 THEN SIRA
+ELSE IF MinorAxisLength >= 203.77 THEN SEKER
+ELSE IF ShapeFactor4 >= 0.998325 AND MinorAxisLength >= 192.435 AND roundness < 0.92973 THEN SEKER
+ELSE IF ShapeFactor1 < 0.00701629 AND roundness >= 0.809261 AND roundness < 0.906317 AND ShapeFactor2 < 0.00200704 AND ShapeFactor4 < 0.998325 THEN SIRA
+ELSE IF ShapeFactor1 < 0.0066449 AND ShapeFactor4 < 0.997412 AND roundness >= 0.906317 AND roundness < 0.92973 THEN SIRA
+ELSE IF ConvexArea >= 39403 AND ShapeFactor4 < 0.994835 AND AspectRation >= 1.47683 THEN SIRA
+ELSE IF MinorAxisLength >= 192.435 AND ShapeFactor2 < 0.00200704 THEN SIRA
+ELSE IF roundness < 0.883109 AND ConvexArea >= 39403 AND ShapeFactor4 >= 0.994835 AND ShapeFactor4 < 0.997412 THEN SIRA
+ELSE IF ShapeFactor1 >= 0.0066449 AND ShapeFactor1 < 0.00701629 AND roundness >= 0.883109 AND roundness < 0.906317 AND Perimeter >= 730.663 AND Solidity >= 0.986777 THEN SIRA
+ELSE IF ShapeFactor1 < 0.0066449 AND Extent >= 0.759339 AND Extent < 0.795269 THEN SEKER
+ELSE IF Perimeter >= 730.663 AND Extent >= 0.795269 THEN SIRA
+ELSE IF MinorAxisLength >= 182.286 AND EquivDiameter >= 222.754 THEN DERMASON
+ELSE IF Perimeter >= 730.663 AND roundness >= 0.809261 AND roundness < 0.883109 AND Extent < 0.759339 THEN SIRA
+ELSE IF roundness >= 0.852977 AND roundness < 0.906317 AND EquivDiameter >= 206.032 AND ShapeFactor4 < 0.99637 AND ShapeFactor1 < 0.00760725 AND Solidity < 0.986777 THEN SIRA
+ELSE IF ShapeFactor3 >= 0.734661 AND Extent >= 0.759339 AND Extent < 0.795269 AND MinorAxisLength >= 168.049 THEN DERMASON
+ELSE IF ShapeFactor2 < 0.00169144 AND ShapeFactor4 < 0.997412 THEN DERMASON
+ELSE IF MinorAxisLength >= 182.286 THEN DERMASON
+ELSE IF roundness < 0.906317 AND MinorAxisLength >= 168.049 AND ShapeFactor2 >= 0.00169144 AND ShapeFactor2 < 0.00200704 AND Extent >= 0.70372 AND Solidity >= 0.986777 THEN DERMASON
+ELSE IF EquivDiameter >= 206.032 THEN DERMASON
+ELSE PREDICT DERMASON

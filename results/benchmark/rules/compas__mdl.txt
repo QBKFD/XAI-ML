@@ -1,0 +1,14 @@
+# MDL on compas, seed 42
+# rule list (first matching rule applies); 10 rules
+
+IF NOT Age>=30 AND Prior-Crimes>5 == 1 AND NOT Current-Charge-Degree=Misdemeanor THEN 1
+ELSE IF Race=African-American AND NOT Juvenile-Crimes=0 THEN 1
+ELSE IF Age=24-30 AND Prior-Crimes>5 == 1 THEN 1
+ELSE IF NOT Age>=30 AND Prior-Crimes>3 == 1 THEN 1
+ELSE IF NOT Age<=45 AND Prior-Crimes>5 == 1 THEN 1
+ELSE IF NOT Age=24-30 AND NOT Age>=30 AND Gender=Male AND NOT Prior-Crimes=0 THEN 1
+ELSE IF Prior-Crimes>5 == 1 THEN 1
+ELSE IF Age>=30 AND Prior-Crimes=0 AND NOT Race=African-American THEN 0
+ELSE IF Age<=40 AND Prior-Crimes>3 == 0 THEN 0
+ELSE IF Age=24-40 AND Prior-Crimes=0 THEN 0
+ELSE PREDICT 0

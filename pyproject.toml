@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xai-rules"
+version = "1.0.0"
+description = "Benchmark of optimisation-based rule learners (RuleOpt, MDL, IDS, CORELS) against tree baselines"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Jakub Waszczak" }]
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scikit-learn>=1.3",
+    "matplotlib>=3.7",
+    "pyyaml>=6.0",
+    "ruleopt>=1.2",
+]
+
+[project.optional-dependencies]
+# MDL rule lists. `rulelist` pins scikit-learn 0.23 in its metadata, so it is
+# installed with --no-deps by scripts/install_legacy_deps.sh; these are the
+# packages it actually needs at runtime.
+mdl = ["gmpy2>=2.1", "numba>=0.58"]
+# IDS needs pyIDS (GitHub only) and pyarc (declares the defunct `sklearn`
+# package), also installed by the script.
+ids = ["pyfim>=6.28"]
+dev = ["pytest>=7", "ruff>=0.5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: fits the slower rule learners (deselect with -m 'not slow')"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]

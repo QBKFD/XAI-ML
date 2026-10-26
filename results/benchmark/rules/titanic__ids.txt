@@ -1,0 +1,24 @@
+# IDS on titanic, seed 42
+# rule set (unordered); 20 rules
+
+IF Age_Cat == adult THEN died
+IF Passenger_Cat == crew AND Gender == male THEN died
+IF Passenger_Cat == 3rd_class THEN died
+IF Passenger_Cat == 3rd_class AND Gender == male AND Age_Cat == adult THEN died
+IF Passenger_Cat == 1st_class AND Age_Cat == adult THEN survived
+IF Gender == female AND Passenger_Cat == 1st_class AND Age_Cat == adult THEN survived
+IF Passenger_Cat == 2nd_class AND Gender == male AND Age_Cat == adult THEN died
+IF Passenger_Cat == 1st_class AND Gender == male THEN died
+IF Passenger_Cat == 3rd_class AND Gender == female THEN died
+IF Passenger_Cat == 2nd_class AND Age_Cat == adult THEN survived
+IF Gender == female AND Passenger_Cat == 2nd_class THEN survived
+IF Passenger_Cat == 3rd_class AND Gender == female THEN survived
+IF Passenger_Cat == 3rd_class AND Gender == female AND Age_Cat == adult THEN died
+IF Age_Cat == child THEN survived
+IF Age_Cat == child THEN died
+IF Passenger_Cat == 3rd_class AND Age_Cat == child AND Gender == male THEN died
+IF Age_Cat == child AND Gender == male THEN died
+IF Passenger_Cat == 3rd_class AND Age_Cat == child AND Gender == female THEN died
+IF Passenger_Cat == 3rd_class AND Age_Cat == child AND Gender == female THEN survived
+IF Age_Cat == child AND Passenger_Cat == 1st_class THEN survived
+OTHERWISE PREDICT survived

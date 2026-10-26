@@ -1,0 +1,4 @@
+# MDL on doctor, seed 42
+# rule list (first matching rule applies); 0 rules
+
+PREDICT 2

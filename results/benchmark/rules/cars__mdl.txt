@@ -1,0 +1,10 @@
+# MDL on cars, seed 42
+# rule list (first matching rule applies); 6 rules
+
+IF buying < 2 AND persons >= 1 AND safety >= 2 THEN acc
+ELSE IF persons >= 1 AND safety >= 2 AND maint < 2 THEN acc
+ELSE IF persons >= 1 AND safety >= 1 AND safety < 2 AND buying < 2 THEN acc
+ELSE IF lug_boot >= 2 AND safety >= 1 AND safety < 2 AND persons >= 1 THEN acc
+ELSE IF buying >= 2 AND buying < 3 AND maint >= 2 AND maint < 3 AND safety >= 2 THEN acc
+ELSE IF lug_boot >= 1 AND lug_boot < 2 AND safety >= 1 AND safety < 2 AND persons >= 1 THEN unacc
+ELSE PREDICT unacc

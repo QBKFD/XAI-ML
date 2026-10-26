@@ -1,0 +1,20 @@
+# IDS on liver, seed 42
+# rule set (unordered); 16 rules
+
+IF X_3_35.0+ == 1 AND X_5_5.0- == 1 THEN 1
+IF X_3_35.0+ == 1 AND X_5_5.0+ == 0 THEN 1
+IF X_5_5.0- == 1 AND X_3_35.0- == 0 THEN 1
+IF X_5_5.0+ == 0 AND X_3_35.0- == 0 THEN 1
+IF X_5_4.0+ == 0 AND X_3_35.0+ == 1 THEN 1
+IF X_4_20.0- == 1 AND X_2_32.0- == 0 THEN 0
+IF X_0_89.0+ == 0 AND X_3_35.0- == 0 THEN 1
+IF X_2_15.0- == 1 AND X_0_87.0- == 1 THEN 1
+IF X_2_15.0+ == 0 AND X_0_87.0+ == 0 THEN 1
+IF X_5_6.0- == 0 AND X_2_20.2- == 1 THEN 1
+IF X_3_35.0+ == 1 AND X_5_3.0+ == 0 THEN 1
+IF X_5_3.0+ == 0 AND X_3_35.0- == 0 THEN 1
+IF X_3_15.0+ == 0 AND X_2_26.0- == 0 THEN 0
+IF X_0_88.0+ == 0 AND X_3_35.0+ == 1 THEN 1
+IF X_3_35.0+ == 1 AND X_0_87.0- == 1 THEN 1
+IF X_3_35.0+ == 1 AND X_5_3.0- == 1 THEN 1
+OTHERWISE PREDICT 1

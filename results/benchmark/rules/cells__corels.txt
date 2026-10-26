@@ -1,0 +1,5 @@
+# CORELS on cells, seed 42
+# rule list (first matching rule applies); 1 rule
+
+IF NOT UnifSize=>4.5 AND NOT BareNuc=>5.5 THEN benign
+ELSE PREDICT malignant

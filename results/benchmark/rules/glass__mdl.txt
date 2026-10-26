@@ -1,0 +1,9 @@
+# MDL on glass, seed 42
+# rule list (first matching rule applies); 5 rules
+
+IF Na >= 14.16 AND Ba >= 0.075 THEN 6
+ELSE IF Na >= 13.25 AND Mg < 3.48 AND K < 0.065 THEN 5
+ELSE IF Mg < 3.255 AND Al >= 1.54 THEN 4
+ELSE IF RI >= 1.51708 AND Mg >= 3.255 AND Mg < 3.67 AND Al < 1.54 THEN 1
+ELSE IF Na >= 13 AND Ca >= 8.6 AND Ca < 9.73 THEN 1
+ELSE PREDICT 2

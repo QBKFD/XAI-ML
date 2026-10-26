@@ -1,0 +1,19 @@
+# IDS on cells, seed 42
+# rule set (unordered); 15 rules
+
+IF Mit <= 1.5 AND NormNucl <= 2.5 AND UnifSize <= 1.5 THEN benign
+IF UnifShape <= 1.5 AND NormNucl <= 2.5 THEN benign
+IF Mit <= 1.5 AND BareNuc <= 1.5 AND UnifSize <= 1.5 THEN benign
+IF Clump <= 4.5 AND SingEpiSize <= 2.5 AND NormNucl <= 2.5 THEN benign
+IF UnifShape <= 1.5 AND SingEpiSize <= 2.5 AND NormNucl <= 2.5 THEN benign
+IF Clump <= 4.5 AND NormNucl <= 2.5 AND UnifSize <= 1.5 THEN benign
+IF BareNuc <= 1.5 AND MargAdh <= 1.5 AND UnifSize <= 1.5 THEN benign
+IF NormNucl <= 2.5 AND UnifShape <= 1.5 AND MargAdh <= 1.5 THEN benign
+IF BlandChrom <= 2.5 AND Mit <= 1.5 AND NormNucl <= 2.5 THEN benign
+IF Clump <= 4.5 AND BareNuc <= 1.5 AND UnifSize <= 1.5 THEN benign
+IF BlandChrom <= 2.5 AND BareNuc <= 1.5 AND NormNucl <= 2.5 THEN benign
+IF BlandChrom <= 2.5 AND BareNuc <= 1.5 AND Mit <= 1.5 THEN benign
+IF BlandChrom <= 2.5 AND NormNucl <= 2.5 AND UnifSize <= 1.5 THEN benign
+IF BlandChrom <= 2.5 AND Mit <= 1.5 AND UnifSize <= 1.5 THEN benign
+IF Clump <= 4.5 AND BareNuc <= 1.5 AND UnifShape <= 1.5 THEN benign
+OTHERWISE PREDICT malignant

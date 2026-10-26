@@ -1,0 +1,22 @@
+# IDS on cars, seed 42
+# rule set (unordered); 18 rules
+
+IF persons == 2 THEN unacc
+IF safety == low AND persons == more THEN unacc
+IF safety == high AND persons == 2 THEN unacc
+IF persons == 2 AND lug_boot == small THEN unacc
+IF persons == 4 AND safety == low THEN unacc
+IF safety == med AND persons == 2 THEN unacc
+IF buying == vhigh AND safety == low THEN unacc
+IF maint == med AND safety == low THEN unacc
+IF buying == vhigh AND persons == 2 THEN unacc
+IF buying == low AND persons == 2 THEN unacc
+IF maint == high AND persons == 2 THEN unacc
+IF safety == low AND doors == 4 THEN unacc
+IF safety == low AND doors == 5more THEN unacc
+IF buying == med AND safety == low THEN unacc
+IF buying == med AND persons == 2 THEN unacc
+IF maint == high AND buying == vhigh THEN unacc
+IF safety == low AND lug_boot == med AND persons == more THEN unacc
+IF safety == low AND lug_boot == med AND persons == 2 THEN unacc
+OTHERWISE PREDICT acc

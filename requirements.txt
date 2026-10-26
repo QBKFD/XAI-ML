@@ -1,10 +1,16 @@
-pandas
-numpy
-scikit-learn
-pyarc
-gmpy2
-scipy
-ruleopt
-corels
-IDS
-pyfim
+# Exact versions the results in results/benchmark were produced with
+# (Python 3.11). pyproject.toml has the looser ranges the code supports.
+#
+#   pip install -r requirements.txt && pip install -e . --no-deps
+#   bash scripts/install_legacy_deps.sh      # MDL, IDS and CORELS
+numpy==2.4.6
+pandas==3.1.0
+scikit-learn==1.9.1
+matplotlib==3.11.2
+PyYAML==6.0.3
+ruleopt==1.2.1
+highspy==1.15.1
+gmpy2==2.3.2
+numba==0.68.0
+pyfim==6.28
+pytest==9.1.1
