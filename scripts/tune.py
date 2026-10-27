@@ -8,7 +8,7 @@ compare the default and tuned model.
     python scripts/tune.py ids --datasets cells glass titanic cars --max-iterations 1
 
 IDS tuning refits the model many times (coordinate ascent over seven weights),
-so it is slow: roughly 50-100 fits per dataset per iteration.
+so it is slow: several minutes per dataset, about an hour for `cells`.
 
 Output: ``results/tuning/<model>.csv`` with the chosen parameters and the
 test metrics before and after tuning.
@@ -163,7 +163,7 @@ def main() -> int:
         help="search range for each IDS weight (thesis: 1-400)",
     )
     p.add_argument("--max-iterations", type=int, default=1, help="coordinate ascent passes for IDS")
-    p.add_argument("--precision", type=int, default=50, help="ternary search precision for IDS")
+    p.add_argument("--precision", type=int, default=100, help="ternary search precision for IDS (thesis: 50)")
     p.add_argument("--out", type=Path, default=ROOT / "results" / "tuning")
     p.add_argument("-v", "--verbose", action="store_true")
     args = p.parse_args()
