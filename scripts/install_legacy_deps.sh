@@ -6,7 +6,7 @@
 #   CORELS  corels 1.1.29    setup.py breaks on Python >= 3.11 and numpy 2
 #
 # The runtime incompatibilities of rulelist and pyIDS with current pandas/numpy
-# are handled in src/xai_rules/compat.py, so nothing is pinned to old versions.
+# are handled in xai/compat.py, so nothing is pinned to old versions.
 #
 # Usage:  bash scripts/install_legacy_deps.sh            (uses `python` on PATH)
 #         PYTHON=.venv/bin/python bash scripts/install_legacy_deps.sh
@@ -86,7 +86,7 @@ echo "==> Checking imports"
 echo "    (pip may have reported dependency conflicts for rulelist/pyarc above."
 echo "     Those come from their outdated metadata and are expected.)"
 "$PYTHON" - <<'PY'
-from xai_rules.models import MODELS
+from xai.models import MODELS
 for key, cls in MODELS.items():
     missing = cls.missing_dependencies()
     print(f"  {key:<14} {'ok' if not missing else 'missing: ' + ', '.join(missing)}")

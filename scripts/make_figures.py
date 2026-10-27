@@ -13,9 +13,9 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT))
 
-from xai_rules import plotting  # noqa: E402
+from xai import plotting  # noqa: E402
 
 
 def main() -> int:

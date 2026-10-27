@@ -23,7 +23,7 @@ from sklearn.metrics import (
     roc_auc_score,
 )
 
-from xai_rules.rules import Rule
+from xai.rules import Rule
 
 
 def classification_metrics(

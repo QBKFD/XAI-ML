@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from xai_rules.experiment import make_split, run_one
-from xai_rules.models import MODELS, NotApplicable, get_model
+from xai.experiment import make_split, run_one
+from xai.models import MODELS, NotApplicable, get_model
 
 FAST = ["ruleopt", "cart", "c45", "random_forest", "corels"]
 SLOW = ["mdl", "ids"]
@@ -60,7 +60,7 @@ def test_ids_metrics_match_pyids(titanic_split):
     _require("ids")
     from pyarc.qcba.data_structures import QuantitativeDataFrame
 
-    from xai_rules.metrics import interpretability_metrics
+    from xai.metrics import interpretability_metrics
 
     model = get_model("ids", rule_cutoff=20)
     X_tr, X_te = titanic_split.view("categorical")
@@ -112,7 +112,7 @@ def test_unknown_model():
 def test_ids_is_repeatable(titanic_split):
     """Same data, same seed, same rules (needs the pyarc hash patch in compat)."""
     _require("ids")
-    from xai_rules.rules import format_rules
+    from xai.rules import format_rules
 
     X_tr, _ = titanic_split.view("categorical")
     a = get_model("ids", rule_cutoff=20).fit(X_tr, titanic_split.y_train)

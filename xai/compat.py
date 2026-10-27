@@ -45,7 +45,7 @@ _QUANTILE_FUNCS = ("quantile", "nanquantile", "percentile", "nanpercentile")
 
 
 def _accept_interpolation_kwarg(func):
-    if getattr(func, "_xai_rules_patched", False):
+    if getattr(func, "_xai_patched", False):
         return func
 
     @functools.wraps(func)
@@ -54,7 +54,7 @@ def _accept_interpolation_kwarg(func):
             kwargs.setdefault("method", interpolation)
         return func(*args, **kwargs)
 
-    wrapper._xai_rules_patched = True
+    wrapper._xai_patched = True
     return wrapper
 
 
@@ -95,11 +95,11 @@ def _patch_pyarc_rule_hash() -> None:
         from pyarc.data_structures.car import ClassAssocationRule
     except ImportError:
         return
-    if getattr(ClassAssocationRule, "_xai_rules_hash", False):
+    if getattr(ClassAssocationRule, "_xai_hash", False):
         return
 
     def content_hash(self):
         return hash((self.antecedent, repr(self.consequent)))
 
     ClassAssocationRule.__hash__ = content_hash
-    ClassAssocationRule._xai_rules_hash = True
+    ClassAssocationRule._xai_hash = True

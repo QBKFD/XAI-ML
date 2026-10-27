@@ -3,7 +3,7 @@
 Each dataset is described once by a :class:`DatasetSpec`. ``load_dataset``
 returns the raw features and the target; turning those into the inputs a
 specific algorithm needs (numeric, discretised, binary) is done afterwards by
-:mod:`xai_rules.encoding`, fitted on the training split only.
+:mod:`xai.encoding`, fitted on the training split only.
 """
 
 from __future__ import annotations
@@ -14,7 +14,7 @@ from typing import Any
 
 import pandas as pd
 
-DEFAULT_DATA_DIR = Path(__file__).resolve().parents[2] / "data" / "raw"
+DEFAULT_DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "raw"
 
 _LEVELS_4 = ["low", "med", "high", "vhigh"]
 

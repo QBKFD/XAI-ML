@@ -12,7 +12,7 @@ import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
 
-from xai_rules.models import MODELS, RULE_LEARNERS  # noqa: E402
+from xai.models import MODELS, RULE_LEARNERS  # noqa: E402
 
 # Palette: categorical slots in fixed order, checked for colour-vision
 # deficiency separation; one blue ramp for magnitudes; neutral ink for text.

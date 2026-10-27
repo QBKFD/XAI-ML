@@ -17,9 +17,9 @@ import random
 import numpy as np
 import pandas as pd
 
-from xai_rules import compat
-from xai_rules.models.base import RuleModel, quiet
-from xai_rules.rules import Condition, Rule
+from xai import compat
+from xai.models.base import RuleModel, quiet
+from xai.rules import Condition, Rule
 
 _TARGET = "__target__"
 

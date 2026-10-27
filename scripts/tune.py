@@ -31,11 +31,11 @@ import pandas as pd
 from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT))
 
-from xai_rules.experiment import evaluate, make_split  # noqa: E402
-from xai_rules.metrics import classification_metrics  # noqa: E402
-from xai_rules.models import IDSModel, RuleOptModel  # noqa: E402
+from xai.experiment import evaluate, make_split  # noqa: E402
+from xai.metrics import classification_metrics  # noqa: E402
+from xai.models import IDSModel, RuleOptModel  # noqa: E402
 
 log = logging.getLogger("tune")
 

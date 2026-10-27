@@ -22,11 +22,11 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from xai_rules.datasets import DatasetSpec, load_dataset
-from xai_rules.encoding import make_encoder
-from xai_rules.metrics import classification_metrics, interpretability_metrics
-from xai_rules.models import MODELS, NotApplicable, get_model
-from xai_rules.rules import format_rules
+from xai.datasets import DatasetSpec, load_dataset
+from xai.encoding import make_encoder
+from xai.metrics import classification_metrics, interpretability_metrics
+from xai.models import MODELS, NotApplicable, get_model
+from xai.rules import format_rules
 
 log = logging.getLogger(__name__)
 

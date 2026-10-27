@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from xai_rules.metrics import classification_metrics, interpretability_metrics
-from xai_rules.rules import Condition, Rule, format_rules
+from xai.metrics import classification_metrics, interpretability_metrics
+from xai.rules import Condition, Rule, format_rules
 
 X = pd.DataFrame({"a": [1, 2, 3, 4], "b": ["x", "y", "x", "y"]})
 
@@ -87,7 +87,7 @@ def test_interval_categories_print_naturally():
 
 
 def test_binary_threshold_conditions_are_collapsed():
-    from xai_rules.rules import simplify_binary_conditions
+    from xai.rules import simplify_binary_conditions
 
     Xb = pd.DataFrame({"g=m": [0, 1, 0, 1], "age": [10.0, 20.0, 30.0, 40.0]})
     rules = [

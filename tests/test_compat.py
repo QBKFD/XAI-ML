@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from xai_rules import compat
+from xai import compat
 
 
 def test_apply_is_idempotent_and_restores_removed_names():

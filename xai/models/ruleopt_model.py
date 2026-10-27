@@ -15,8 +15,8 @@ import math
 import numpy as np
 import pandas as pd
 
-from xai_rules.models.base import RuleModel
-from xai_rules.rules import Condition, Rule
+from xai.models.base import RuleModel
+from xai.rules import Condition, Rule
 
 RULE_COSTS = ("gini", "length")
 
