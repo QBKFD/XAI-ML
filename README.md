@@ -99,8 +99,8 @@ ELSE PREDICT died
 
 `scripts/tune.py` repeats the tuning step of the thesis on the training part
 of the first split: a 5-fold grid search for RuleOpt and coordinate ascent
-over the seven IDS weights (each searched in 1-400, as in the thesis). Test
-results with package defaults and after tuning:
+over the seven IDS weights (each searched in 1-400 as in the thesis, with a
+ternary-search precision of 100 instead of 50 to keep the run time down). Test results with package defaults and after tuning:
 
 | Model | Dataset | Accuracy | ROC AUC | Rules | Rule width |
 |---|---|---|---|---|---|
@@ -108,16 +108,26 @@ results with package defaults and after tuning:
 | RuleOpt | `glass` | 0.65 → 0.77 | 0.86 → 0.94 | 45 → 36 | 2.7 → 3.7 |
 | RuleOpt | `titanic` | 0.76 → 0.76 | 0.73 → 0.63 | 22 → 9 | 2.8 → 2.0 |
 | RuleOpt | `cars` | 0.87 → 0.99 | 0.97 → 1.00 | 25 → 67 | 2.7 → 4.8 |
+| IDS | `glass` | 0.51 → 0.56 | 0.61 → 0.79 | 23 → 15 | 2.0 → 2.0 |
+| IDS | `titanic` | 0.69 → 0.75 | 0.52 → 0.69 | 20 → 20 | 2.1 → 2.1 |
+| IDS | `cars` | 0.80 → 0.79 | 0.89 → 0.89 | 18 → 20 | 2.1 → 2.2 |
 
-Chosen parameters: [`results/tuning/`](results/tuning).
+For RuleOpt, tuning mostly picks deeper trees on the multi-class data (higher
+accuracy on `glass` and `cars`, more rules on `cars`) and shallower ones on the
+binary data (half the rules or fewer on `cells` and `titanic`). For IDS, accuracy and
+ROC AUC go up on `glass` and `titanic`. On `titanic` and `cars` no single-weight change beat the random starting point of the search on the validation part, so the reported weights are that starting point, and the test differences there are not a search result. The IDS search on `cells` (over a minute per fit) did not finish within the time available and is not included. Chosen parameters are in
+[`results/tuning/`](results/tuning).
 
 ## Differences from the thesis
 
 Rerunning everything on current library versions turned up a few problems in
 the original notebooks (kept unchanged in [`notebooks/thesis/`](notebooks/thesis)).
 The thesis tables are in [`results/thesis/`](results/thesis) as they were
-published. Overall the accuracies agree closely; the outliers below are
-explained by the first two points.
+published. Most accuracies agree within a few points. The largest gaps come
+from the first two items below; two others, RuleOpt on `cars` (0.82 then,
+0.94 now) and CORELS on `tictactoe` (0.76 then, 0.68 now), probably come from
+the newer RuleOpt release and a different binarisation of the board, but were
+not traced further.
 
 ![Thesis vs reproduced accuracy](docs/figures/thesis_vs_reproduced.png)
 
@@ -198,7 +208,7 @@ pytest                                   # ~10 s
 python scripts/run_benchmark.py          # ~20 min, mostly IDS
 python scripts/make_figures.py
 python scripts/tune.py ruleopt           # ~1 min
-python scripts/tune.py ids               # slow: ~70 refits per dataset
+python scripts/tune.py ids               # ~5 min per dataset, hours for cells
 ```
 
 `make install`, `make test`, `make benchmark` and `make figures` do the same.
