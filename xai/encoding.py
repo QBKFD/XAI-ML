@@ -22,7 +22,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from xai_rules.datasets import DatasetSpec
+from xai.datasets import DatasetSpec
 
 VIEWS = ("numeric", "categorical", "binary")
 

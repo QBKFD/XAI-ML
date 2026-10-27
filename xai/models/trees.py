@@ -19,8 +19,8 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 
-from xai_rules.models.base import RuleModel
-from xai_rules.rules import Condition, Rule
+from xai.models.base import RuleModel
+from xai.rules import Condition, Rule
 
 
 def tree_to_rules(tree: DecisionTreeClassifier, feature_names, classes) -> list[Rule]:

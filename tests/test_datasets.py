@@ -1,6 +1,6 @@
 import pytest
 
-from xai_rules.datasets import DATASETS, dataset_summary, get_spec, load_dataset
+from xai.datasets import DATASETS, dataset_summary, get_spec, load_dataset
 
 # Row counts from Table 1 of the thesis.
 EXPECTED_ROWS = {

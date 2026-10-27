@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from xai_rules.datasets import get_spec
-from xai_rules.encoding import BinaryEncoder, Discretizer, NumericEncoder, make_encoder
+from xai.datasets import get_spec
+from xai.encoding import BinaryEncoder, Discretizer, NumericEncoder, make_encoder
 
 
 def test_numeric_encoder_orders_and_one_hots():

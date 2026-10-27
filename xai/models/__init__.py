@@ -1,9 +1,9 @@
-from xai_rules.models.base import NotApplicable, RuleModel
-from xai_rules.models.corels_model import CORELSModel
-from xai_rules.models.ids_model import IDSModel
-from xai_rules.models.mdl_model import MDLModel
-from xai_rules.models.ruleopt_model import RuleOptModel
-from xai_rules.models.trees import C45Model, CARTModel, RandomForestModel
+from xai.models.base import NotApplicable, RuleModel
+from xai.models.corels_model import CORELSModel
+from xai.models.ids_model import IDSModel
+from xai.models.mdl_model import MDLModel
+from xai.models.ruleopt_model import RuleOptModel
+from xai.models.trees import C45Model, CARTModel, RandomForestModel
 
 # Order used in tables and figures: rule learners first, then baselines.
 MODELS: dict[str, type[RuleModel]] = {

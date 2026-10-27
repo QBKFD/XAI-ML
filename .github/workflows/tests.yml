@@ -24,8 +24,8 @@ jobs:
         run: bash scripts/install_legacy_deps.sh
       - name: Lint
         run: |
-          ruff check src scripts tests
-          ruff format --check src scripts tests
+          ruff check xai scripts tests
+          ruff format --check xai scripts tests
       - name: Test
         run: python -m pytest -v
       - name: Benchmark smoke run

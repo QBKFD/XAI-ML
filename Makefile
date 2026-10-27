@@ -13,8 +13,8 @@ test-fast:          ## skip the tests that fit MDL and IDS
 	$(PYTHON) -m pytest -m "not slow"
 
 lint:
-	ruff check src scripts tests
-	ruff format --check src scripts tests
+	ruff check xai scripts tests
+	ruff format --check xai scripts tests
 
 benchmark:          ## 11 datasets x 7 models x 5 splits (~30 min, mostly IDS)
 	$(PYTHON) scripts/run_benchmark.py

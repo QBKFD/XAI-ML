@@ -1,6 +1,6 @@
 import pandas as pd
 
-from xai_rules import plotting
+from xai import plotting
 
 
 def _summary():

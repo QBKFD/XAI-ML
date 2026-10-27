@@ -27,10 +27,10 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))  # allow running without `pip install -e .`
+sys.path.insert(0, str(ROOT))  # allow running without `pip install -e .`
 
-from xai_rules.experiment import run_benchmark, summarise  # noqa: E402
-from xai_rules.models import MODELS  # noqa: E402
+from xai.experiment import run_benchmark, summarise  # noqa: E402
+from xai.models import MODELS  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:

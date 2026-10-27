@@ -155,7 +155,7 @@ not traced further.
 - **Library versions.** RuleOpt 1.2 solves with HiGHS and no longer accepts
   `max_features`, `max_leaf_nodes` or `min_impurity_decrease`, so the grid
   uses the remaining parameters. MDL and IDS no longer need `pandas==1.5.3`:
-  [`compat.py`](src/xai_rules/compat.py) restores the few removed numpy and
+  [`compat.py`](xai/compat.py) restores the few removed numpy and
   pandas names they call.
 
 ## How the comparison is set up
@@ -175,7 +175,7 @@ flowchart LR
 
 Each method gets the input it needs, built by an encoder fitted on the
 training split. Every learned model is converted to the same
-[`Rule`](src/xai_rules/rules.py) objects, so rule counts, widths, coverage and
+[`Rule`](xai/rules.py) objects, so rule counts, widths, coverage and
 overlap are computed by one function for all methods (a test checks that it
 reproduces pyIDS's own numbers). The interpretability metrics are the ones
 defined for IDS and used in the thesis:
@@ -222,9 +222,9 @@ python scripts/run_benchmark.py --datasets cells titanic --seeds 42 --models rul
 Using a model directly:
 
 ```python
-from xai_rules.experiment import make_split
-from xai_rules.models import get_model
-from xai_rules.rules import format_rules
+from xai.experiment import make_split
+from xai.models import get_model
+from xai.rules import format_rules
 
 split = make_split("titanic", seed=42)
 X_train, X_test = split.view("binary")        # CORELS needs 0/1 features
@@ -246,16 +246,16 @@ print(format_rules(model.rules_, ordered=model.ordered))
 │   ├── thesis/                 tables from the thesis, transcribed
 │   └── tuning/                 RuleOpt grid search, IDS weight search
 ├── scripts/                    run_benchmark.py, tune.py, make_figures.py, install script
-├── src/xai_rules/
-│   ├── datasets.py             dataset registry and loading
-│   ├── encoding.py             numeric / categorical / binary encoders
-│   ├── models/                 one wrapper per method, common interface
-│   ├── rules.py                common rule format
-│   ├── metrics.py              predictive and interpretability metrics
-│   ├── experiment.py           benchmark loop
-│   ├── plotting.py             figures
-│   └── compat.py               patches for the legacy packages
-└── tests/
+├── tests/
+└── xai/
+    ├── datasets.py             dataset registry and loading
+    ├── encoding.py             numeric / categorical / binary encoders
+    ├── models/                 one wrapper per method, common interface
+    ├── rules.py                common rule format
+    ├── metrics.py              predictive and interpretability metrics
+    ├── experiment.py           benchmark loop
+    ├── plotting.py             figures
+    └── compat.py               patches for the legacy packages
 ```
 
 ## Datasets
@@ -274,7 +274,7 @@ print(format_rules(model.rules_, ordered=model.ordered))
 | `doctor` | 714 | 14 | 3 | 18% | Number of doctors visited by older adults |
 | `drybeans` | 13,611 | 15 | 7 | 4% | Dry bean variety from shape measurements |
 
-Sources are listed in [`datasets.py`](src/xai_rules/datasets.py). `compas` and
+Sources are listed in [`datasets.py`](xai/datasets.py). `compas` and
 `liver` were already binarised when collected, and `ionosphere` was already
 discretised.
 

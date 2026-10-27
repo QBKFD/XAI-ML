@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, ClassifierMixin
 
-from xai_rules.rules import Rule, simplify_binary_conditions
+from xai.rules import Rule, simplify_binary_conditions
 
 
 class NotApplicable(Exception):
@@ -30,7 +30,7 @@ class RuleModel(ClassifierMixin, BaseEstimator):
     key: ClassVar[str] = ""
     #: Name used in tables and figures.
     display_name: ClassVar[str] = ""
-    #: Which encoding from :mod:`xai_rules.encoding` the model expects.
+    #: Which encoding from :mod:`xai.encoding` the model expects.
     view: ClassVar[str] = "numeric"
     #: ``True`` for rule lists (first matching rule wins).
     ordered: ClassVar[bool] = False

@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from xai_rules.datasets import load_dataset
+from xai.datasets import load_dataset
 
 
 @pytest.fixture(scope="session")

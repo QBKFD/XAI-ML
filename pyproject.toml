@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "xai-rules"
+name = "xai-ml"
 version = "1.0.0"
 description = "Benchmark of optimisation-based rule learners (RuleOpt, MDL, IDS, CORELS) against tree baselines"
 readme = "README.md"
@@ -29,7 +29,7 @@ ids = ["pyfim>=6.28"]
 dev = ["pytest>=7", "ruff>=0.5"]
 
 [tool.setuptools.packages.find]
-where = ["src"]
+include = ["xai*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
